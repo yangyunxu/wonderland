@@ -1,0 +1,73 @@
+#body-div{
+
+}
+#main-div{
+width:100%;
+margin-top:20px;
+
+}
+
+#main-title{
+    margin-left:10px;
+    font-size:48px;
+    }
+#link-title-2{
+    margin-left:50px;
+    font-size:24px;
+    }
+#link-title-3{
+    margin-left:50px;
+    font-size:24px;
+    }
+#link-title-1{
+    margin-left:25%;
+    font-size:24px;
+    }
+
+#button-span{
+margin-top:15px;
+margin-right:20px;
+float:right;
+}
+.button{
+font-size:24px;
+margin-left:20px;
+}
+#pic-div{
+    width:100%;
+    margin-top:10px;
+
+    }
+
+img{
+    clear: both;
+    display: block;
+    margin:auto;
+    height:400px;
+    width:800px;
+    }
+#category-div{
+width:80%;
+margin-left:10%;
+margin-top:10px;
+
+}
+.category-span{
+font-size:24px;
+}
+#recommended-div{
+width:80%;
+margin-left:10%;
+margin-top:20px;
+
+}
+
+#bottom-div{
+width:20%;
+margin-left:40%;
+
+}
+#bottom-span{
+margin-left:34%;
+font-size:24px;
+}

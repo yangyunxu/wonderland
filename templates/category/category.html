@@ -18,30 +18,37 @@
         </div>
       </div>
     </nav>
-    <header class="continent" style="background-image: url({% static 'images/asia.jpg' %}); position: relative;">
+    <header class="continent" style="background-image: url({% static bkg %}); position: relative;">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="page-heading text-center">
-                        <h1 style="font-family: 'Trade Winds'">ASIA</h1>
-                        <span class="subheading"> Earth's Largest and Most Populous Continent</span>
+                        <h1 style="font-family: 'Trade Winds'">{{category.name}}</h1>
+                        <span class="subheading"> Exploring and Travelling the BEST of {{ category.name }}</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
     <div class="row row-cols-1 row-cols-md-3 wonder-result center-block">
-        <div class="col mb-4">
-            <a href="{% url 'category:page' 'Stonehenge' %}" class="card wonder-card shadow-lg rounded">
-                <img src="{% static 'images/stonehenge.jpg' %}">
-                <div class="card-body">
-                    <span style="font-family: 'Trade Winds'; font-size: 1.5rem;">Stonehenge</span>
-                    <span class="ml-2" style="font-family: 'Trade Winds'">10.00</span>
-                    <p style="font-size: 0.8rem;">Stonehenge is a prehistoric monument in Wiltshire, England, two miles (3 km) west of Amesbury. It consists of a ring of standing stones,</p>
-                </div>
-            </a>
-        </div>
-
+{#    every wonder#}
+        {% for page in pages %}
+            {% with 'images/places/'|add:page.slug|add:'.jpg' as image_static %}
+            <div class="col mb-4">
+                <a href="{% url 'category:page' page.slug %}" class="card wonder-card shadow-lg rounded">
+                    <div class="img-box" style="background-image: url({% static image_static %})"></div>
+                    <div class="card-body">
+                        <span style="font-family: 'Trade Winds'; font-size: 1.5rem;">{{page.name}}</span>
+                        <span class="ml-2" style="font-family: 'Trade Winds'">{{ page.rate }}</span>
+                        <p style="font-size: 0.8rem;">{{ page.intro }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+    <div class="text-center mb-3">
+        <span class="text-center">-nothing more for now-</span>
     </div>
 {% endblock %}

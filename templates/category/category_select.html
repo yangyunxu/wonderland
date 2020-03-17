@@ -1,0 +1,63 @@
+{% extends 'category/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+    <title>Select a Category</title>
+{% endblock %}
+
+{% block body_block %}
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-5 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal" style="font-family: 'Trade Winds';">WONDERLAND</h5>
+      <a class="btn btn-outline-secondary mr-2" href="#">Sign up</a>
+      <a class="btn btn-outline-secondary" href="#">Login</a>
+    </div>
+    <div class="container">
+        <div class="d-flex flex-row justify-content-center p-4">
+            <h1 class="text-center" style="font-family: 'Trade Winds';">Categories</h1>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <h2>BY CONTINENT</h2>
+            <div class="d-flex flex-column align-items-center p-4 px-md-5">
+                <div class="row row-cols-1 row-cols-md-4">
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                            </div>
+                        </a>
+                    </div>
+                {#  item2  #}
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                            </div>
+                        </a>
+                    </div>
+                {#  item3#}
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                            </div>
+                        </a>
+                    </div>
+{#                    item4#}
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

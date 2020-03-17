@@ -1,0 +1,47 @@
+{% extends 'category/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+    <title>{{ category }}</title>
+{% endblock %}
+
+{% block body_block%}
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand text-white" href="#" style="font-family: 'Trade Winds'">WONDERLAND</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto pt-4">
+              <a class="btn btn-outline-secondary mr-2" href="#">Sign up</a>
+              <a class="btn btn-outline-secondary" href="#">Login</a>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <header class="continent" style="background-image: url({% static 'images/asia.jpg' %}); position: relative;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading text-center">
+                        <h1 style="font-family: 'Trade Winds'">ASIA</h1>
+                        <span class="subheading"> Earth's Largest and Most Populous Continent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="row row-cols-1 row-cols-md-3 wonder-result center-block">
+        <div class="col mb-4">
+            <a href="{% url 'category:page' 'Stonehenge' %}" class="card wonder-card shadow-lg rounded">
+                <img src="{% static 'images/stonehenge.jpg' %}">
+                <div class="card-body">
+                    <span style="font-family: 'Trade Winds'; font-size: 1.5rem;">Stonehenge</span>
+                    <span class="ml-2" style="font-family: 'Trade Winds'">10.00</span>
+                    <p style="font-size: 0.8rem;">Stonehenge is a prehistoric monument in Wiltshire, England, two miles (3 km) west of Amesbury. It consists of a ring of standing stones,</p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+{% endblock %}

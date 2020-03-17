@@ -1,0 +1,27 @@
+<!DOCTYPE>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>
+            {% block title_block %}
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+    <div>
+        {% block body_block %}
+        {% endblock %}
+    </div>
+        <div>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'myaccount:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'myaccount:signup' %}">Sign up</a></li>
+                    <li><a href="{% url 'myaccount:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </body>
+</html>

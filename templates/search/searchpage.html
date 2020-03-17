@@ -1,0 +1,31 @@
+{% extends 'search/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    <link rel="stylesheet" href="{% static 'css/thebestwonders.css' %}"/>
+    <title>search results</title>
+{% endblock %}
+
+{% block header_info %}
+    This page shows the search results based on the text in the search bar.
+{% endblock %}
+
+{% block header_title %}
+    search results
+{% endblock %}
+
+{% block body_block %}
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1>The most popular wonders</h1>
+                <p class="lead text-muted">Here are 6 the most popular wonders.<br>They are selected by their rate and
+                    updated by the time.</p>
+            </div>
+        </section>
+
+
+    </main>
+
+{% endblock %}

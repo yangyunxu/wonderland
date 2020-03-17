@@ -1,0 +1,74 @@
+{% extends 'category/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-stars.css' %}">
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+    <title>{{ category }}</title>
+{% endblock %}
+
+{% block body_block%}
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand text-white" href="#" style="font-family: 'Trade Winds'">WONDERLAND</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto pt-4">
+              <a class="btn btn-outline-light mr-2" href="#">Sign up</a>
+              <a class="btn btn-outline-light" href="#">Login</a>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <header class="continent" style="background-image: url({% static 'images/Petra.jpg' %}); background-position: center; position: relative;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading text-center">
+                        <h1 style="font-family: 'Trade Winds'">STONEHENGE</h1>
+                        <span class="subheading" style="font-size: 1rem">Average Rate</span>
+                        <span class="subheading" style="font-family: 'Trade Winds'">10.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="page-content rounded p-4 text-justify shadow">
+            <div>
+                <span></span>
+                <p>Stonehenge is a prehistoric monument in Wiltshire, England, two miles (3 km) west of Amesbury. It consists of a ring of standing stones, each around 13 feet (4.0 m) high, seven feet (2.1 m) wide, and weighing around 25 tons. The stones are set within earthworks in the middle of the most dense complex of Neolithic and Bronze Age monuments in England, including several hundred tumuli (burial mounds).</p>
+            </div>
+        </div>
+        <div class="rate mt-5 mb-5">
+            <span class="d-block mb-5 text-center">Give Your Rate Here!</span>
+            <div class="mt-2">
+                <select id="example">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <span class="d-block text-center">Here are some Comments from Other Travellers!</span>
+            <div style="background: black;height: 500px;">
+{#                    comments#}
+
+            </div>
+        </div>
+    </div>
+    <div class="fixed-bottom">
+        leave your comment
+    </div>
+    <script src="{% static 'page.js' %}"></script>
+    <script src="{% static 'jquery.barrating.min.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'myaccount/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Sign up
+{% endblock %}
+
+{% block body_block %}
+<h1>Register for wonderland</h1>
+{% if registered %}
+<strong>thank you for registering!</strong>
+{% else %}
+<strong>register here!</strong><br />
+<form id="user_form" method="post" action="{% url 'myaccount:signup' %}"
+      enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <input type="submit" name="submit" value="Register" />
+</form>
+{% endif %}
+{% endblock %}
+

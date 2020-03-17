@@ -1,0 +1,84 @@
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+h2{
+    font-size: 1rem;
+}
+
+
+
+
+
+/*category page*/
+
+header.continent{
+	margin-bottom:50px;
+	background-color:#868e96;
+	position:relative;
+	background-size:cover;
+}
+
+.overlay{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+    background: rgba(0,0,0,0.4);
+}
+
+header.continent .page-heading{
+	padding:150px 0 150px;
+	color:white
+}
+
+header.continent .page-heading h1{
+	font-size:50px;
+	margin-top:0
+}
+
+header.continent .page-heading .subheading{
+	font-size:24px;
+	font-weight:300;
+	line-height:1.1;
+	display:block;
+	margin:10px 0 0;
+}
+.wonder-result{
+    width: 90%;
+    margin: 0 auto;
+}
+.col{
+    width: 100%;
+}
+.col img{
+    width: 100%;
+}
+.wonder-card{
+    cursor: pointer;
+    position: relative;
+    border-radius: 10px;
+}
+.wonder-card:hover{
+    transform: translate(0,-5px);
+    /*margin-top: -10px;*/
+    transition: all 0.5s;
+}
+
+/*page page*/
+.page-content{
+	background-color: white;
+	margin-top: -80px;
+	position: relative;
+}
+.rate{
+	width: 100%;
+}
+.br-widget a{
+	margin-left: 30px;
+}

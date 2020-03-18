@@ -1,0 +1,30 @@
+<!DOCTYPE>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>Myaccount</title>
+    </head>
+
+    <body>
+        <div style="display:inline">
+            <a href="{% url 'myaccount:logout' %}" style="margin-left:50px">MAIN</a>
+            <a href="{% url 'myaccount:logout' %}" style="margin-left:20px">ABOUT</a>
+            <a href="{% url 'myaccount:logout' %}" style="margin-left:20px">Q&A</a>
+        </div>
+
+        <div style="float:right; margin-right: 50px">
+            {% if user.is_authenticated %}
+                Hi! {{ profile.user.username }}
+            {% else %}
+            {% endif %}
+        </div>
+            <img src="{{ MEDIA_URL }}{{ profile.picture }}">
+        <div>
+            {% if user.is_authenticated %}
+                {{ profile.personalURL }}
+            {% else %}
+            {% endif %}
+        </div>
+    </body>
+</html>

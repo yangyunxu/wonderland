@@ -16,61 +16,79 @@
 {% endblock %}
 
 {% block body_block %}
-<main role="main">
+    <main role="main">
 
 
-    <div class="jumbotron text-center" style="padding: 5rem 0 1rem">
-        <form class="search-form" style="margin: 0 auto;width: 50%;">
-            <input class="form-control mr-sm-2" id="typestr" type="text"
-                   style="display:inline;width: 50%;height: 3rem;" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="display: inline"
-                    onclick="searchPage()">Search
-            </button>
-        </form>
-    </div>
-
-
-    <section class="jumbotron text-center" style="padding: 2rem 0 5rem">
-        <div class="container">
-            <h1>The search results for </h1>
+        <div class="jumbotron text-center" style="padding: 5rem 0 1rem">
+            <div class="search-form" style="margin: 0 auto;width: 50%;">
+                <input class="form-control mr-sm-2" id="typestr" type="text"
+                       style="display:inline;width: 50%;height: 3rem;" placeholder="Search" aria-label="Search"
+                       onkeydown="onKeyDown()">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="display: inline"
+                        onclick="searchPage()">Search
+                </button>
+            </div>
+            <p id="hint">Hint: You can search the continents and places.</p>
         </div>
-    </section>
 
 
-    {% if results %}
+        <section class="jumbotron text-center" style="padding: 2rem 0 5rem">
+            <div class="container">
+                <h1>The search results for {{ keyword }}</h1>
+            </div>
+            <p>Sort by rate descending</p>
+        </section>
 
-    {#                <li>{{ page.name }}</li>#}
-    <div class="row row-cols-1 row-cols-md-3 wonder-result center-block">
-        {% for page in results %}
-            {% with 'images/places/'|add:page.slug|add:'.jpg' as image_static %}
-                <div class="col mb-4">
-                    <a href="{% url 'category:page' page.slug %}" class="card wonder-card shadow-lg rounded">
-                        <div class="img-box" style="background-image: url({% static image_static %})"></div>
-                        <div class="card-body">
-                            <span style="font-family: 'Trade Winds'; font-size: 1.5rem;">{{ page.name }}</span>
-                            <span class="ml-2" style="font-family: 'Trade Winds'">{{ page.rate }}</span>
-                            <p style="font-size: 0.8rem;">{{ page.intro }}</p>
+
+        {% if results %}
+
+            {#                <li>{{ page.name }}</li>#}
+            <div class="row row-cols-1 row-cols-md-3 wonder-result center-block">
+                {% for page in results %}
+                    {% with 'images/places/'|add:page.slug|add:'.jpg' as image_static %}
+                        <div class="col mb-4">
+                            <a href="{% url 'category:page' page.slug %}" class="card wonder-card shadow-lg rounded">
+                                <div class="img-box" style="background-image: url({% static image_static %})"></div>
+                                <div class="card-body">
+                                    <span style="font-family: 'Trade Winds'; font-size: 1.5rem;">{{ page.name }}</span>
+                                    <span class="ml-2" style="font-family: 'Trade Winds'">{{ page.rate }}</span>
+                                    <p style="font-size: 0.8rem;">{{ page.intro }}</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-            {% endwith %}
-        {% endfor %}
-    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
 
-    {% else %}
+        {% else %}
 
-    <h4 id="noresult">Sorry, no suitable results...</h4>
+            <h4 id="noresult">Sorry, no suitable results...</h4>
 
-    {% endif %}
+        {% endif %}
 
 
-</main>
+    </main>
 
-<script type="text/javascript">
-    function searchPage() {
-        var strs = document.getElementById("typestr").value.toString();
-        window.open('{% url 'search:searchpage'  %}', '_blank');
-    }
-</script>
+    <script type="text/javascript">
+
+        function onKeyDown(event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 27) { // key Esc
+                document.getElementById("typestr").value = "";
+            }
+
+            if (e && e.keyCode == 13) { // key Enter
+                searchPage();
+            }
+
+        }
+
+        function searchPage() {
+            var strs = document.getElementById("typestr").value.toString();
+            var url = '{% url 'search:searchpage' 'none' %}';
+            url = url.replace('none', strs);
+            window.open(url, '_self');
+        }
+    </script>
 
 {% endblock %}

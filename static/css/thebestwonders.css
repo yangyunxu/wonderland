@@ -37,3 +37,10 @@ footer p {
     text-align: center;
     margin: auto;
 }
+
+#hint {
+    color: #868e96;
+    position: relative;
+    right: 40px;
+    font-size: .75rem;
+}

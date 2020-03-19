@@ -1,8 +1,11 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from category.models import Category, Page
+from category.models import Category, Page, Comment
+
+
 # Create your views here.
 def category(request, category_name_slug):
     context_dict = {}
@@ -43,7 +46,11 @@ def page(request, page_name_slug):
 def submitComment(request):
     if request.method == "POST":
         print(request.POST)
-        return HttpResponse(-1)
-    else:
-        print("get")
+        user_name = request.POST.userName
+        user_comment = request.POST.userComment
+        user_rate = request.POST.userRate
+        user = User.objects.get(username=user_name)
+
+        comment = Comment()
+
         return HttpResponse(-1)

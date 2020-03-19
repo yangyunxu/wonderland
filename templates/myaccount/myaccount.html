@@ -7,24 +7,77 @@
     </head>
 
     <body>
-        <div style="display:inline">
-            <a href="{% url 'myaccount:logout' %}" style="margin-left:50px">MAIN</a>
-            <a href="{% url 'myaccount:logout' %}" style="margin-left:20px">ABOUT</a>
-            <a href="{% url 'myaccount:logout' %}" style="margin-left:20px">Q&A</a>
+        <div>
+            <div style="display:inline">
+                <a href="{% url 'home:index' %}" style="margin-left:50px">MAIN</a>
+                <a href="{% url 'home:about' %}" style="margin-left:20px">ABOUT</a>
+                <a href="{% url 'home:faq' %}" style="margin-left:20px">Q&A</a>
+            </div>
+
+            <div style="float:right; margin-right: 50px">
+                Hi! {{ profile.user.username }}
+                <a href="{% url 'myaccount:logout' %}">Logout</a>
+            </div>
         </div>
 
-        <div style="float:right; margin-right: 50px">
-            {% if user.is_authenticated %}
-                Hi! {{ profile.user.username }}
-            {% else %}
-            {% endif %}
-        </div>
-            <img src="{{ MEDIA_URL }}{{ profile.picture }}">
-        <div>
-            {% if user.is_authenticated %}
-                {{ profile.personalURL }}
-            {% else %}
-            {% endif %}
+        <div style="display: table">
+            <div style="margin-left: 60px; width:250px; height:300px; display:table-cell; vertical-align:middle; text-align: center;">
+                <div style="margin-top: 80px; display:inline-block;">
+                    {% if profile.picture %}
+                        <img src="{{ MEDIA_URL }}{{ profile.picture }}" alt="avatar" height="100" width="100">
+                    {% else %}
+                        <img src="{% static 'myaccount/default_avatar.jpg' %}" alt="avatar" height="100" width="100">
+                    {% endif %}
+                </div><br>
+
+                <div style="margin-top: 10px; display:inline-block;">
+                    Last login:
+                    {% if lastLogin %}
+                        {{ lastLogin }}
+                    {% else %}
+                        It is your first time to login!
+                    {% endif %}
+                </div><br>
+
+                <div style="margin-top: 10px; display:inline-block;">
+                    Username: {{ profile.user.username }}
+                </div><br>
+
+                <div style="margin-top: 10px; display:inline-block;">
+                    Email:
+                    {% if profile.user.email %}
+                        <a href="{{ profile.user.email }}">{{ profile.user.email }}</a>
+                    {% else %}
+                    {% endif %}
+                </div><br>
+
+                <div style="margin-top: 10px; display:inline-block;">
+                    {% if profile.personalURL %}
+                        <a href="{{ profile.personalURL }}">Personal Website</a>
+                    {% else %}
+                    {% endif %}
+                </div><br>
+
+                <div style="margin-top: 10px; display:inline-block;">
+                    <a href="{% url 'myaccount:changepassword' %}"><button>Change Password</button></a>
+                </div>
+            </div>
+
+            <div style="; margin-left: 200px;">
+                <div style="margin-top: 80px">
+                    Favorites Wonders:
+                    <div style="margin-top: 20px">
+
+                    </div>
+                </div><br>
+
+                <div style="margin-top: 40px">
+                    Recent Comments:
+                    <div style="margin-top: 20px">
+
+                    </div>
+                </div><br>
+            </div>
         </div>
     </body>
 </html>

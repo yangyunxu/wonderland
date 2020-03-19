@@ -46,11 +46,19 @@ def page(request, page_name_slug):
 def submitComment(request):
     if request.method == "POST":
         print(request.POST)
-        user_name = request.POST.userName
-        user_comment = request.POST.userComment
-        user_rate = request.POST.userRate
+        user_name = request.POST['userName']
+        user_comment = request.POST['userComment']
+        user_rate = request.POST['userRate']
+        user_wonder = request.POST['userWonder']
+
         user = User.objects.get(username=user_name)
+        wonder = Page.objects.get(slug=user_wonder)
 
         comment = Comment()
+        comment.user = user
+        comment.rate = user_rate
+        comment.comment = user_comment
+        comment.wonder = user_wonder
+        comment.save()
 
         return HttpResponse(-1)

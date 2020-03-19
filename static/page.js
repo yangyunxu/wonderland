@@ -19,10 +19,13 @@ var csrftoken = Cookies.get('csrftoken');
 $("#submitComment").on("click",function () {
     var url = "category/submitComment/";
     var commentBox = $('#commentBox').val();
+    var wonderName = $("#wonder").html().replace(/\s/g,"-");
+    var inputName = $("")
     var data = {
         userRate: rate,
-        userName: "",
+        userName: ,
         userComment:commentBox,
+        userWonder: wonderName
     };
     $.ajax({
             headers: {'X-CSRFToken': csrftoken},
@@ -30,7 +33,7 @@ $("#submitComment").on("click",function () {
             url:"../../submitComment/",
             data:data,
             success:function () {
-                
+
             }
         }
     );

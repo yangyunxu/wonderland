@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'category',
     'search',
     'myaccount',
+    'home'
 ]
 
 MIDDLEWARE = [

@@ -20,15 +20,15 @@
         </div>
       </div>
     </nav>
-    <header class="continent" style="background-image: url({% static 'images/Petra.jpg' %}); background-position: center; position: relative;">
+    <header class="continent" style="background-image: url({% static bkg %}); background-position: center; position: relative;">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="page-heading text-center">
-                        <h1 style="font-family: 'Trade Winds'">STONEHENGE</h1>
+                        <h1 style="font-family: 'Trade Winds'">{{page.name}}</h1>
                         <span class="subheading" style="font-size: 1rem">Average Rate</span>
-                        <span class="subheading" style="font-family: 'Trade Winds'">10.00</span>
+                        <span class="subheading" style="font-family: 'Trade Winds'">{{ page.rate }}</span>
                     </div>
                 </div>
             </div>
@@ -38,13 +38,17 @@
         <div class="page-content rounded p-4 text-justify shadow">
             <div>
                 <span></span>
-                <p>Stonehenge is a prehistoric monument in Wiltshire, England, two miles (3 km) west of Amesbury. It consists of a ring of standing stones, each around 13 feet (4.0 m) high, seven feet (2.1 m) wide, and weighing around 25 tons. The stones are set within earthworks in the middle of the most dense complex of Neolithic and Bronze Age monuments in England, including several hundred tumuli (burial mounds).</p>
+                <p>{{ page.intro }}</p>
             </div>
+        </div>
+        <div class="mt-4 text-center">
+            <span>The Location</span>
+            <div class="shadow rounded mt-3" id="map"></div>
         </div>
         <div class="rate mt-5 mb-5">
             <span class="d-block mb-5 text-center">Give Your Rate Here!</span>
             <div class="mt-2">
-                <select id="example">
+                <select id="rating">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -59,16 +63,65 @@
             </div>
         </div>
         <div>
-            <span class="d-block text-center">Here are some Comments from Other Travellers!</span>
-            <div style="background: black;height: 500px;">
-{#                    comments#}
-
+            <span class="d-block text-center mt-3">Here are some Comments from Other Travellers!</span>
+            <div class="px-5 pb-5">
+            {# comments #}
+                <div class="comment shadow rounded px-4 pt-3 pb-1 mt-3 border-bottom border-left border-right border-top">
+                    <div class="commenter d-flex flex-row">
+                        <img class="rounded-circle" src="{% static 'images/continent/asia.jpg' %}">
+                        <div class="d-flex flex-column ml-3">
+                            <span>name</span>
+                            <span>time</span>
+                        </div>
+                        <div class="d-flex flex-column ml-auto">
+                            <span style="font-family: 'Trade Winds';font-size: 0.5rem;;">Commentor's rate</span>
+                            <span class="text-right" style="font-family: 'Trade Winds';font-size: 1.5rem;color: #D55754;">10</span>
+                        </div>
+                    </div>
+                    <p class="comment-text mt-1 text-justify">
+                        Really Reeeeeeally Amazing place! Really Reeeeeeally Amazing place!  Really Reeeeeeally Amazing place! Really Reeeeeeally Amazing place!  Really Reeeeeeally Amazing place! Really Reeeeeeally Amazing place!  Really Reeeeeeally Amazing place! Really Reeeeeeally Amazing place!
+                    </p>
+                </div>
             </div>
+            <div class="placeholder"></div>
         </div>
     </div>
-    <div class="fixed-bottom">
-        leave your comment
+{#    bottom input #}
+    <div class="fixed-bottom comment-box container">
+        <div class="comment-btn text-center mb-3">
+            <div class="comment-btn-bkg mx-auto">
+                <i style="color: white" class="fa fa-pencil"></i>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Leave your comment here!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+            <i class="fa fa-check"></i></button>
+          </div>
+        </div>
     </div>
-    <script src="{% static 'page.js' %}"></script>
     <script src="{% static 'jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'page.js' %}"></script>
+
+    <script>
+    // Initialize and add the map
+        function initMap() {
+          // The location of Stonehenge
+            var uluru = {lat: 51.178969, lng: -1.826215};
+          // The map, centered at Stonehenge
+            var location = 0;
+            var geocoder = new google.maps.Geocoder();
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 13});
+            geocoder.geocode({'address':'{{ page.name }}'},function (results, status) {
+                location = results[0].geometry.location;
+                map.setCenter(location);
+            });
+          {#var marker = new google.maps.Marker({position: uluru, map: map});#}
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnDoxjCZgNymxhz0-pTTnX3Cuq7c1Jq-U&callback=initMap">
+    </script>
+
 {% endblock %}

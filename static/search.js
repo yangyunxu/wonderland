@@ -10,3 +10,9 @@ function onKeyDown(event) {
     }
 
 }
+
+// function  searchPage() {
+//     var str = document.getElementById("typestr").value;
+//     window.open('{% url 'search:searchpage' str, '_self'');
+//
+// }

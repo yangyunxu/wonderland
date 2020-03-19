@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-
+from myaccount.models import UserProfile
 
 # Create your views here.
 # Register to be a user
@@ -32,6 +32,7 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
+    user_login(request)
     return render(request,
                   'myaccount/signup.html',
                   context={'user_form': user_form,
@@ -48,9 +49,8 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 # record the date of login
-
-                # Modify redirect page later
-                return redirect(reverse('myaccount:signup'))
+                profile = UserProfile.objects.get(user=user)
+                return render(request, 'myaccount/myaccount.html', context={'profile': profile})
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -68,6 +68,10 @@ def restricted(request):
 @login_required
 def user_logout(request):
     logout(request)
+    return redirect(reverse('myaccount:myaccount'))
 
-    # Modify redirect page later
-    return redirect(reverse('myaccount:signup'))
+@login_required
+def myaccount(request):
+    return render(request, 'myaccount/myaccount.html')
+
+

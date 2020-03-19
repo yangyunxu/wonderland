@@ -5,5 +5,5 @@ app_name = 'search'
 
 urlpatterns = [
     path('thebestwonders/', views.theBestWonders, name='thebestwonders'),
-    path('searchpage/', views.searchResult, name='searchpage'),
+    path('searchpage/<str:typestring>/', views.searchResult, name='searchpage'),
 ]

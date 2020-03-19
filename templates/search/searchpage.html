@@ -3,6 +3,7 @@
 
 {% block title_block %}
     <link rel="stylesheet" href="{% static 'css/thebestwonders.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
     <title>search results</title>
 {% endblock %}
 
@@ -15,17 +16,61 @@
 {% endblock %}
 
 {% block body_block %}
-    <main role="main">
-
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1>The most popular wonders</h1>
-                <p class="lead text-muted">Here are 6 the most popular wonders.<br>They are selected by their rate and
-                    updated by the time.</p>
-            </div>
-        </section>
+<main role="main">
 
 
-    </main>
+    <div class="jumbotron text-center" style="padding: 5rem 0 1rem">
+        <form class="search-form" style="margin: 0 auto;width: 50%;">
+            <input class="form-control mr-sm-2" id="typestr" type="text"
+                   style="display:inline;width: 50%;height: 3rem;" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="display: inline"
+                    onclick="searchPage()">Search
+            </button>
+        </form>
+    </div>
+
+
+    <section class="jumbotron text-center" style="padding: 2rem 0 5rem">
+        <div class="container">
+            <h1>The search results for </h1>
+        </div>
+    </section>
+
+
+    {% if results %}
+
+    {#                <li>{{ page.name }}</li>#}
+    <div class="row row-cols-1 row-cols-md-3 wonder-result center-block">
+        {% for page in results %}
+            {% with 'images/places/'|add:page.slug|add:'.jpg' as image_static %}
+                <div class="col mb-4">
+                    <a href="{% url 'category:page' page.slug %}" class="card wonder-card shadow-lg rounded">
+                        <div class="img-box" style="background-image: url({% static image_static %})"></div>
+                        <div class="card-body">
+                            <span style="font-family: 'Trade Winds'; font-size: 1.5rem;">{{ page.name }}</span>
+                            <span class="ml-2" style="font-family: 'Trade Winds'">{{ page.rate }}</span>
+                            <p style="font-size: 0.8rem;">{{ page.intro }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+
+    {% else %}
+
+    <h4 id="noresult">Sorry, no suitable results...</h4>
+
+    {% endif %}
+
+
+</main>
+
+<script type="text/javascript">
+    function searchPage() {
+        var strs = document.getElementById("typestr").value.toString();
+        window.open('{% url 'search:searchpage'  %}', '_blank');
+    }
+</script>
 
 {% endblock %}

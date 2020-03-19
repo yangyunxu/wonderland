@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -130,3 +131,5 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 # Redirect page when users are not logged in
 LOGIN_URL = 'myaccount:login'
+
+

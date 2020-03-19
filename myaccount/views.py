@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from myaccount.models import UserProfile
+from django.utils import timezone
 
 # Create your views here.
 # Register to be a user
@@ -50,7 +51,11 @@ def user_login(request):
                 login(request, user)
                 # record the date of login
                 profile = UserProfile.objects.get(user=user)
-                return render(request, 'myaccount/myaccount.html', context={'profile': profile})
+                lastLogin = profile.logInDate
+                currentLogin = timezone.now()
+                profile.logInDate = currentLogin
+                profile.save()
+                return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin})
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -68,7 +73,7 @@ def restricted(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return redirect(reverse('myaccount:myaccount'))
+    return redirect(reverse('myaccount:login'))
 
 @login_required
 def myaccount(request):

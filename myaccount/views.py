@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myaccount.forms import UserForm, UserProfileForm
+from myaccount.forms import UserForm, UserProfileForm, ChangepwdForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.urls import reverse
@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from myaccount.models import UserProfile
 from django.utils import timezone
+
+
+
 
 # Create your views here.
 # Register to be a user
@@ -78,5 +81,27 @@ def user_logout(request):
 @login_required
 def myaccount(request):
     return render(request, 'myaccount/myaccount.html')
+
+@login_required
+def changepwd(request):
+    if request.method == 'GET':
+        form = ChangepwdForm()
+        return render(request, 'myaccount/changepwd.html', {'form': form,})
+    else:
+        form = ChangepwdForm(request.POST)
+        if form.is_valid():
+            username = request.user.username
+            oldpassword = request.POST.get('oldpassword', '')
+            user = authenticate(username=username, password=oldpassword)
+            if user is not None and user.is_active:
+                newpassword = request.POST.get('newpassword1', '')
+                user.set_password(newpassword)
+                user.save()
+                return render(request, 'myaccount/login.html', {'changepwd_success':True})
+            else:
+                return render(request, 'myaccount/changepwd.html', {'form': form,'oldpassword_is_wrong':True})
+        else:
+            return render(request, 'myaccount/changepwd.html',  {'form': form,})
+
 
 

@@ -1,0 +1,16 @@
+{% extends 'myaccount/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Change Password
+{% endblock %}
+
+{% block body_block %}
+<h1>Change Your Password</h1>
+<form id="changepwd_form" method="post" action="{% url 'myaccount:changepassword' %}">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="submit" />
+</form>
+{% endblock %}

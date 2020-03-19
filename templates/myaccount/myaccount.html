@@ -9,9 +9,9 @@
     <body>
         <div>
             <div style="display:inline">
-                <a href="{% url 'myaccount:logout' %}" style="margin-left:50px">MAIN</a>
-                <a href="{% url 'myaccount:logout' %}" style="margin-left:20px">ABOUT</a>
-                <a href="{% url 'myaccount:logout' %}" style="margin-left:20px">Q&A</a>
+                <a href="{% url 'home:index' %}" style="margin-left:50px">MAIN</a>
+                <a href="{% url 'home:about' %}" style="margin-left:20px">ABOUT</a>
+                <a href="{% url 'home:faq' %}" style="margin-left:20px">Q&A</a>
             </div>
 
             <div style="float:right; margin-right: 50px">
@@ -59,7 +59,7 @@
                 </div><br>
 
                 <div style="margin-top: 10px; display:inline-block;">
-                    <a href="{{ profile.personalURL }}"><button>Change Password</button></a>
+                    <a href="{% url 'myaccount:changepassword' %}"><button>Change Password</button></a>
                 </div>
             </div>
 

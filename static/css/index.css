@@ -10,7 +10,7 @@ margin-top:20px;
 #main-title{
     margin-left:10px;
     font-size:48px;
-    font-family: "Verdana";
+
     }
 #link-title-2{
     margin-left:50px;
@@ -30,14 +30,10 @@ margin-top:15px;
 margin-right:20px;
 float:right;
 }
-.button{
-font-size:24px;
-margin-left:20px;
-}
+
 #pic-div{
     width:100%;
     margin-top:20px;
-    background-color:yellow;
     }
 img{
     clear: both;

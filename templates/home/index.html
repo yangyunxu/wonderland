@@ -5,24 +5,33 @@
     <meta charset="UTF-8">
     <title>Wonderland</title>
     <link rel="stylesheet" href="{% static 'css/index.css'%}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body >
 <div id="body-div">
 <div id="main-div">
 
-    <span id="main-title">WonderLand</span>
+    <span id="main-title" >WonderLand</span>
 
     <span id="link-title-1"> <a href="category/categories/"> ALL </a></span>
     <span id="link-title-2">  <a href="/home/about/">About</a></span>
     <span id="link-title-3" ><a href="/home/faq/">Q&A</a></span>
 
         <span id="button-span">
-           <a href="/myaccount/signup/">
-               <button class="button" >Sign up</button>
-           </a>
-            <a href="/myaccount/login/">
-            <button class="button">Log in</button>
+            {% if user.is_authenticated %}
+            <span>User: {{ user.username }}</span>
+            <a href="{% url 'myaccount:logout' %}">
+                <button class="btn btn-outline-secondary"> Logout</button>
             </a>
+            {% else %}
+<!--            <a href="/myaccount/signup/">-->
+            <a href="{% url 'myaccount:signup' %}">
+               <button class=" btn btn-outline-secondary mr-2" >Sign up</button>
+            </a>
+            <a href="/myaccount/login/">
+            <button class="btn btn-outline-secondary">Log in</button>
+            </a>
+            {% endif %}
         </span>
 
 </div>
@@ -43,14 +52,17 @@
 
     </div>
     <div id="category-div">
-    <span class="category-span"> Explored by </span></br></br>
+    <span class="category-span"> Explored by </span>
+        <span style="float:right"><a href="category/categories/">More</a></span>
+        </br></br>
     <span class="category-span"> Category</span></br></br>
     <span class="category-span"> Category</span></br>
 
     </div>
 
     <div id="recommended-div">
-        <span class="category-span"> The Best Wonders </span></br></br>
+        <span class="category-span"> The Best Wonders </span>
+        <span style="float:right"><a href="search/thebestwonders/">More</a></span></br></br>
     </div>
 <hr/>
 <div id="bottom-div">

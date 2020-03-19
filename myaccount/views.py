@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myaccount.forms import UserForm, UserProfileForm
+from myaccount.forms import UserForm, UserProfileForm, ChangepwdForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.urls import reverse
@@ -7,6 +7,10 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from myaccount.models import UserProfile
+from django.utils import timezone
+
+
+
 
 # Create your views here.
 # Register to be a user
@@ -50,7 +54,11 @@ def user_login(request):
                 login(request, user)
                 # record the date of login
                 profile = UserProfile.objects.get(user=user)
-                return render(request, 'myaccount/myaccount.html', context={'profile': profile})
+                lastLogin = profile.logInDate
+                currentLogin = timezone.now()
+                profile.logInDate = currentLogin
+                profile.save()
+                return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin})
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -68,10 +76,32 @@ def restricted(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return redirect(reverse('myaccount:myaccount'))
+    return redirect(reverse('myaccount:login'))
 
 @login_required
 def myaccount(request):
     return render(request, 'myaccount/myaccount.html')
+
+@login_required
+def changepwd(request):
+    if request.method == 'GET':
+        form = ChangepwdForm()
+        return render(request, 'myaccount/changepwd.html', {'form': form,})
+    else:
+        form = ChangepwdForm(request.POST)
+        if form.is_valid():
+            username = request.user.username
+            oldpassword = request.POST.get('oldpassword', '')
+            user = authenticate(username=username, password=oldpassword)
+            if user is not None and user.is_active:
+                newpassword = request.POST.get('newpassword1', '')
+                user.set_password(newpassword)
+                user.save()
+                return render(request, 'myaccount/login.html', {'changepwd_success':True})
+            else:
+                return render(request, 'myaccount/changepwd.html', {'form': form,'oldpassword_is_wrong':True})
+        else:
+            return render(request, 'myaccount/changepwd.html',  {'form': form,})
+
 
 

@@ -23,7 +23,7 @@ $("#submitComment").on("click",function () {
     var inputName = $("")
     var data = {
         userRate: rate,
-        userName: ,
+        userName: "11",
         userComment:commentBox,
         userWonder: wonderName
     };

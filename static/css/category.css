@@ -19,6 +19,7 @@ h2{
 header.continent{
 	margin-bottom:50px;
 	background-color:#868e96;
+	background-position: center;
 	position:relative;
 	background-size:cover;
 }
@@ -29,11 +30,11 @@ header.continent{
 	left:0;
 	height:100%;
 	width:100%;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.3);
 }
 
 header.continent .page-heading{
-	padding:150px 0 150px;
+	padding:120px 0 120px;
 	color:white
 }
 
@@ -69,8 +70,24 @@ header.continent .page-heading .subheading{
     /*margin-top: -10px;*/
     transition: all 0.5s;
 }
-
+.img-box{
+	background-position: center;
+	background-size: cover;
+	height: 250px;
+	overflow: hidden;
+}
+.card-body p{
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	/*max-height: 20px;*/
+	text-overflow: ellipsis;
+	text-align: justify;
+}
 /*page page*/
+
 .page-content{
 	background-color: white;
 	margin-top: -80px;
@@ -81,4 +98,31 @@ header.continent .page-heading .subheading{
 }
 .br-widget a{
 	margin-left: 30px;
+}
+.comment-box{
+	width: 100%;
+	/*transform: translate(0,100px);*/
+	/*transition: all 0.5s;*/
+}
+.comment-btn i{
+	font-size: 1.5rem;
+}
+.comment-btn-bkg{
+	cursor: pointer;
+	background-color: black;
+	display: inline-block;
+	padding: 10px 12px;
+	border-radius: 50%;
+}
+
+.commenter img{
+	width: 50px;
+	height: 50px;
+}
+.placeholder{
+	height: 45px;
+}
+#map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
 }

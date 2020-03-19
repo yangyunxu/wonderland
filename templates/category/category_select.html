@@ -20,19 +20,19 @@
         <div class="d-flex flex-column justify-content-center">
             <h2>BY CONTINENT</h2>
             <div class="d-flex flex-column align-items-center p-4 px-md-5">
-                <div class="row row-cols-1 row-cols-md-4">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
                     <div class="col mb-4 continent-card">
-                        <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
-                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                        <a href="{% url 'category:category' 'europe' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/continent/europe.jpg' %}" class="card-img-top" alt="...">
                             <div class="overlay d-flex flex-column justify-content-center text-center">
-                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">EUROPE</h5>
                             </div>
                         </a>
                     </div>
                 {#  item2  #}
                     <div class="col mb-4 continent-card">
                         <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
-                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                            <img src="{% static 'images/continent/asia.jpg' %}" class="card-img-top" alt="...">
                             <div class="overlay d-flex flex-column justify-content-center text-center">
                                 <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
                             </div>
@@ -40,19 +40,51 @@
                     </div>
                 {#  item3#}
                     <div class="col mb-4 continent-card">
-                        <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
-                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                        <a href="{% url 'category:category' 'africa' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/continent/africa.jpg' %}" class="card-img-top" alt="...">
                             <div class="overlay d-flex flex-column justify-content-center text-center">
-                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">AFRICA</h5>
                             </div>
                         </a>
                     </div>
 {#                    item4#}
                     <div class="col mb-4 continent-card">
-                        <a href="{% url 'category:category' 'asia' %}" class="card  shadow-lg">
-                            <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="...">
+                        <a href="{% url 'category:category' 'south-america' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/continent/south-america.jpg' %}" class="card-img-top" alt="...">
                             <div class="overlay d-flex flex-column justify-content-center text-center">
-                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">SOUTH AMERICA</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'north-america' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/continent/north-america.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">NORTH AMERICA</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'oceania' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/continent/oceania.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">OCEANIA</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'antarctica' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/continent/antarctica.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ANTARCTICA</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col mb-4 continent-card">
+                        <a href="{% url 'category:category' 'all' %}" class="card  shadow-lg">
+                            <img src="{% static 'images/continent/all.jpg' %}" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ALL</h5>
                             </div>
                         </a>
                     </div>

@@ -10,6 +10,7 @@ def theBestWonders(request):
 
 def searchResult(request, typestring):
     context_dict = {}
+    context_dict['keyword'] = "\'"+typestring+"\'"
     categories = Category.objects.all()
     for category in categories:
         if typestring.lower() == category.name.lower():
@@ -17,8 +18,8 @@ def searchResult(request, typestring):
             return render(request, 'search/searchpage.html', context=context_dict)
     pages = Page.objects.all()
     for page in pages:
-        if typestring.lower() == page.name.lower():
-            context_dict['results'] = Page.objects.get(name=typestring)
+        if typestring.lower().replace(" ","") == page.name.lower().replace(" ",""):
+            context_dict['results'] = Page.objects.filter(name=page.name).order_by("-rate")
             return render(request, 'search/searchpage.html', context=context_dict)
 
     context_dict['results'] = None

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html" >
+<head>
+    <meta charset="UTF-8">
+    <title>Wonderland</title>
+    <link rel="stylesheet" href="{% static 'css/index.css'%}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body >
+<div id="body-div">
+<div id="main-div">
+
+    <span id="main-title" >WonderLand</span>
+
+    <span id="link-title-1"> <a href="category/categories/"> ALL </a></span>
+    <span id="link-title-2">  <a href="/home/about/">About</a></span>
+    <span id="link-title-3" ><a href="/home/faq/">Q&A</a></span>
+
+        <span id="button-span">
+            {% if user.is_authenticated %}
+            <span>User: {{ user.username }}</span>
+            <a href="{% url 'myaccount:logout' %}">
+                <button class="btn btn-outline-secondary"> Logout</button>
+            </a>
+            {% else %}
+<!--            <a href="/myaccount/signup/">-->
+            <a href="{% url 'myaccount:signup' %}">
+               <button class=" btn btn-outline-secondary mr-2" >Sign up</button>
+            </a>
+            <a href="/myaccount/login/">
+            <button class="btn btn-outline-secondary">Log in</button>
+            </a>
+            {% endif %}
+        </span>
+
+</div>
+<hr/>
+    <div id="pic-div" >
+        <img class="img-slide "src="{% static 'images/stonehenge.jpg' %}"
+         alt="Picture of Stonehenge" />
+        <img class="img-slide change-pic" src="{% static 'images/Colosseum.jpg' %}"
+         alt="Picture of Colosseum" />
+        <img class="img-slide change-pic" src="{% static 'images/Egyptian-pyramids.jpg' %}"
+         alt="Picture of Egyptian-pyramids" />
+        <img class="img-slide change-pic" src="{% static 'images/Chichen-Itza.jpg' %}"
+         alt="Picture of Chichen-Itza" />
+        <img class="img-slide change-pic" src="{% static 'images/Alhambra.jpg' %}"
+         alt="Picture of Alhambra" />
+
+        </br>
+
+    </div>
+    <div id="category-div">
+    <span class="category-span"> Explored by </span>
+        <span style="float:right"><a href="category/categories/">More</a></span>
+        </br></br>
+    <span class="category-span"> Category</span></br></br>
+    <span class="category-span"> Category</span></br>
+
+    </div>
+
+    <div id="recommended-div">
+        <span class="category-span"> The Best Wonders </span>
+        <span style="float:right"><a href="search/thebestwonders/">More</a></span></br></br>
+    </div>
+<hr/>
+<div id="bottom-div">
+<span id="bottom-span"><a href="/home/contact/">Contact us</a> </span>
+</div>
+</div>
+
+</body>
+<script type="text/javascript">
+    var index=0;
+
+    function ChangeImg() {
+        index++;
+        var a=document.getElementsByClassName("img-slide");
+        if(index>=a.length) index=0;
+        for(var i=0;i<a.length;i++){
+            a[i].style.display='none';
+        }
+        a[index].style.display='block';
+    }
+
+    setInterval(ChangeImg,2000);
+</script>
+</html>

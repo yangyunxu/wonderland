@@ -68,6 +68,5 @@ def restricted(request):
 @login_required
 def user_logout(request):
     logout(request)
-
     # Modify redirect page later
     return redirect(reverse('myaccount:signup'))

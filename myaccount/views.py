@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myaccount.forms import UserForm, UserProfileForm, ChangepwdForm
+from myaccount.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.urls import reverse
@@ -14,6 +14,7 @@ from django.utils import timezone
 
 # Create your views here.
 # Register to be a user
+
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -36,7 +37,6 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    user_login(request)
     return render(request,
                   'myaccount/signup.html',
                   context={'user_form': user_form,
@@ -52,7 +52,6 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                # record the date of login
                 profile = UserProfile.objects.get(user=user)
                 lastLogin = profile.logInDate
                 currentLogin = timezone.now()
@@ -80,28 +79,36 @@ def user_logout(request):
 
 @login_required
 def myaccount(request):
-    return render(request, 'myaccount/myaccount.html')
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    lastLogin = profile.logInDate
+    currentLogin = timezone.now()
+    profile.logInDate = currentLogin
+    profile.save()
+    return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin})
 
-@login_required
+
 def changepwd(request):
-    if request.method == 'GET':
-        form = ChangepwdForm()
-        return render(request, 'myaccount/changepwd.html', {'form': form,})
-    else:
-        form = ChangepwdForm(request.POST)
-        if form.is_valid():
-            username = request.user.username
-            oldpassword = request.POST.get('oldpassword', '')
-            user = authenticate(username=username, password=oldpassword)
-            if user is not None and user.is_active:
-                newpassword = request.POST.get('newpassword1', '')
+    if request.method == 'POST':
+        user = request.user
+        oldpassword = request.POST.get('oldpassword')
+        newpassword = request.POST.get('newpassword')
+        newpassword1 = request.POST.get('newpassword1')
+        if newpassword != oldpassword:
+            if newpassword == newpassword1:
                 user.set_password(newpassword)
                 user.save()
-                return render(request, 'myaccount/login.html', {'changepwd_success':True})
+                return render(request, 'myaccount/login.html')
             else:
-                return render(request, 'myaccount/changepwd.html', {'form': form,'oldpassword_is_wrong':True})
+                return HttpResponse("Different passwords, check again!")
         else:
-            return render(request, 'myaccount/changepwd.html',  {'form': form,})
+                return HttpResponse("New password must differ from the old!")
+    else:
+        return render(request, 'myaccount/changepwd.html')
+
+
+
+
 
 
 

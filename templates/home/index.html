@@ -5,21 +5,24 @@
     <meta charset="UTF-8">
     <title>Wonderland</title>
     <link rel="stylesheet" href="{% static 'css/index.css'%}"/>
+    <link rel="stylesheet" href="/static/css/category.css">
+    <link rel="stylesheet" href="{% static 'css/thebestwonders.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Trade+Winds&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body style="background-image: url(/static/images/home/ice-1.jpg);background-size: cover;">
+<!--<body style="background-image: url(/static/images/home/ice-1.jpg);background-size: cover;">-->
 
-<div id="main-div" >
+<div  style="background-image: url(/static/images/home/tree.jpg);background-size:cover">
 
   <b>
-      <a  href="/home/" style="color: black; font-family:'Lucida Console', Monaco, monospace" >
+      <a  href="/home/" style="color: black;" >
        <span id="main-title" class="navbar-brand" >WonderLand</span>
    </a>
   </b>
 
-    <span id="link-title-1"> <a href="/category/category/all/" class="link-style"> ALL </a></span>
-    <span id="link-title-2">  <a href="/home/about/" class="link-style">About</a></span>
-    <span id="link-title-3" ><a href="/home/faq/" class="link-style">Q&A</a></span>
+<!--    <span id="link-title-1"> <a href="/category/category/all/" class="link-style"> ALL </a></span>-->
+<!--    <span id="link-title-2">  <a href="/home/about/" class="link-style">About</a></span>-->
+<!--    <span id="link-title-3" ><a href="/home/faq/" class="link-style">Q&A</a></span>-->
 
         <span id="button-span">
             {% if user.is_authenticated %}
@@ -36,53 +39,99 @@
             <button class="btn btn-outline-secondary">Log in</button>
             </a>
             {% endif %}
-        </span>
+        </span><br><br><br>
 
-</div>
-<hr/>
-    <div id="pic-div" >
-        <img class="img-slide "src="{% static 'images/places/stonehenge.jpg' %}"
-         alt="Picture of Stonehenge" />
-        <img class="img-slide change-pic" src="{% static 'images/places/Colosseum.jpg' %}"
-         alt="Picture of Colosseum" />
-        <img class="img-slide change-pic" src="{% static 'images/places/Egyptian-pyramids.jpg' %}"
-         alt="Picture of Egyptian-pyramids" />
-        <img class="img-slide change-pic" src="{% static 'images/places/Chichen-Itza.jpg' %}"
-         alt="Picture of Chichen-Itza" />
-        <img class="img-slide change-pic" src="{% static 'images/places/Alhambra.jpg' %}"
-         alt="Picture of Alhambra" />
 
-        </br>
 
-    </div>
+    <h2 style="color: black;font-family: 'Trade Winds';text-align:center">LET'S GO</h2><br><br>
+<!--</div>-->
+
+<!--<div style="width: 50%; margin: 0 auto; ">-->
+    <h5 style="text-align: center">
+        <a  href="/category/category/all/" style="color: rgba(28,29,32,0.70);font-family: 'Trade Winds';font-size:24px;" > ALL </a>
+        <a  href="/home/about/" style="color: rgba(28,29,32,0.70);font-family: 'Trade Winds';margin-left:80px;font-size:24px;">About</a>
+        <a  href="/home/faq/" style="color: rgba(28,29,32,0.70);font-family: 'Trade Winds';margin-left:80px;font-size:24px;">Q&A</a>
+    </h5><hr/>
+
+</div >
+
     <div id="category-div">
-    <span class="category-span"> IT'S TIME TO EXPLORE </span>
-        <span style="margin-left: 30%"><a href="/category/categories/" style="color: dimgrey">More</a></span>
-        </br></br>
-<!--    <span class="category-span"> Category</span></br></br>-->
-        <a href="category/category/asia">
-                <button class="btn btn-outline-secondary " style="margin-left: 20%"> Asia</button>
-        </a>
-        <a href="category/category/europe">
-                <button class="btn btn-outline-secondary" style="margin-left: 20px;">Europe</button>
-        </a>
-        </br></br>
-<!--    <span class="category-span"> Category</span></br>-->
+    <span class="category-span" style="font-family: 'Trade Winds'"> IT'S TIME TO EXPLORE </span>
+         <span style="float:right;margin-right: 5%"><a href="/category/categories/" style="color: dimgrey">More</a></span>
+        <div style="width: 80%;margin: auto">
+            <div class="col mb-4 continent-card" style="width: 45%;display:inline">
+                        <a href="/category/category/asia/" class="card  shadow-lg">
+                            <img src="/static/images/continent/asia.jpg" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">ASIA</h5>
+                            </div>
+                        </a>
+                    </div>
+                 <div class="col mb-4 continent-card" style="width: 45%;display:inline">
+                        <a href="/category/category/europe/" class="card  shadow-lg">
+                            <img src="/static/images/continent/europe.jpg" class="card-img-top" alt="...">
+                            <div class="overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-white" style="font-family: 'Trade Winds';">EUROPE</h5>
+                            </div>
+                        </a>
+                    </div>
+        </div>
+
+<!--         <div id="pic-div" >-->
+<!--        <img class="img-slide "src="{% static 'images/places/stonehenge.jpg' %}"-->
+<!--         alt="Picture of Stonehenge" />-->
+<!--        <img class="img-slide change-pic" src="{% static 'images/places/Colosseum.jpg' %}"-->
+<!--         alt="Picture of Colosseum" />-->
+<!--        <img class="img-slide change-pic" src="{% static 'images/places/Egyptian-pyramids.jpg' %}"-->
+<!--         alt="Picture of Egyptian-pyramids" />-->
+<!--        <img class="img-slide change-pic" src="{% static 'images/places/Chichen-Itza.jpg' %}"-->
+<!--         alt="Picture of Chichen-Itza" />-->
+<!--        <img class="img-slide change-pic" src="{% static 'images/places/Alhambra.jpg' %}"-->
+<!--         alt="Picture of Alhambra" />-->
+
+<!--        </br>-->
 
     </div>
+
+        </br></br>
+
+
+
 
     <div id="recommended-div">
-        <span class="category-span"> THE BEST WONDERS </span>
-        <span style="margin-left: 31%"><a href="/search/thebestwonders/" style="color: dimgrey">More</a></span></br>
-        <button style="margin-left: 20%">1</button>
-        <button style="margin-left: 20px">2</button>
-        </br></br>
-    </div>
-<hr/>
-<div id="bottom-div"  >
-<!--    <img src="{% static 'images/home/background.jpg' %}">-->
+        <span class="category-span" style="font-family: 'Trade Winds'"> WHAT'S HOT THIS TIME </span>
+        <span style="float:right;margin-right: 5%"><a href="/search/thebestwonders/" style="color: dimgrey">More</a></span></br><br>
+                <div class="row" style="width: 90%">
+                    {% for page in pages %}
+                        {% with 'images/places/'|add:page.slug|add:'.jpg' as image_static %}
+                            <div class="col-md-6">
+                                <div class="card mb-4 shadow-sm">
+                                    <img class="img-response" style="width: 100%;height: 400px" src="{% static image_static %}" alt="Picture of {{ page.slug }}"/>
+                                    <div class="card-body">
+                                        <p class="card-text" style="height: 190px;overflow: hidden"> {{ page.intro }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.open('{% url 'category:page' page.slug %}', '_blank');">View
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <span id="bottom-span"><a style="color: white" href="/home/contact/">Contact us</a> </span>
+                        {% endwith %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+        </br></br>
+
+<hr/>
+<div id="bottom-div" >
+
+        <span><a class="bottom-title" href="/home/contact/" >Contact us</a> </span>
 
 
 </div>
@@ -90,18 +139,18 @@
 
 </body>
 <script type="text/javascript">
-    var index=0;
-
-    function ChangeImg() {
-        index++;
-        var a=document.getElementsByClassName("img-slide");
-        if(index>=a.length) index=0;
-        for(var i=0;i<a.length;i++){
-            a[i].style.display='none';
-        }
-        a[index].style.display='block';
-    }
-
-    setInterval(ChangeImg,2000);
+    // var index=0;
+    //
+    // function ChangeImg() {
+    //     index++;
+    //     var a=document.getElementsByClassName("img-slide");
+    //     if(index>=a.length) index=0;
+    //     for(var i=0;i<a.length;i++){
+    //         a[i].style.display='none';
+    //     }
+    //     a[index].style.display='block';
+    // }
+    //
+    // setInterval(ChangeImg,2000);
 </script>
 </html>

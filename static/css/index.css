@@ -1,27 +1,9 @@
-
-#main-div{
-width:100%;
-margin-top:20px;
-
-}
-
 #main-title{
-
+    margin-top: 20px;
     margin-left: 3%;
-    font-size:48px;
-    }
-#link-title-2{
-    margin-left:50px;
-    font-size:24px;
-    }
-#link-title-3{
-    margin-left:50px;
-    font-size:24px;
-    }
-#link-title-1{
-    margin-left:20%;
-    font-size:24px;
-    }
+    font-size:56px;
+    font-family: 'Trade Winds'
+}
 .link-style{
     color: #868e96;
 }
@@ -58,15 +40,14 @@ font-size:24px;
 width:80%;
 margin-left:10%;
 margin-top:20px;
-
 }
 #bottom-div{
-    width:20%;
-    margin: auto;
-
+    text-align:center;
+}
+.bottom-title{
+    color: dimgrey;
+    font-size:20px;
+    font-family: 'Trade Winds'
 }
 
-#bottom-span{
-margin-left:34%;
-font-size:20px;
-}
+

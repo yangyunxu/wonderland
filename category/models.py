@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 from django.utils import timezone
 
+from myaccount.models import UserProfile
+
 
 class Category(models.Model):
     NAME_MAX_LENGTH = 128
@@ -19,7 +21,7 @@ class Page(models.Model):
     CHAR_MAX_LENGTH = 128
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=CHAR_MAX_LENGTH, unique=True)
-    rate = models.CharField(max_length=20, default="0")
+    rate = models.CharField(max_length=20, default="10")
     intro = models.CharField(max_length=CHAR_MAX_LENGTH)
     slug = models.SlugField(unique=True)
 
@@ -30,11 +32,11 @@ class Page(models.Model):
         return self.name
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     wonder = models.ForeignKey(Page, on_delete=models.CASCADE)
     rate = models.CharField(max_length=20, default="0")
     comment = models.CharField(max_length=512)
     date = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.user+self.wonder
+        return self.user.user.username

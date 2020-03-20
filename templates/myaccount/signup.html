@@ -6,19 +6,46 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>Register for wonderland</h1>
+<div>
+    <h1 style="margin-left:550px; margin-top:30px">Register for wonderland</h1>
+</div>
 {% if registered %}
-<strong>thank you for registering!</strong>
+<div style="margin-left:660px; margin-top:10px">
+    <strong>thank you for registering!</strong>
+</div>
 {% else %}
-<strong>register here!</strong><br />
-<form id="user_form" method="post" action="{% url 'myaccount:signup' %}"
-      enctype="multipart/form-data">
+<div style="margin-left:690px; margin-top:10px">
+    <strong>register here!</strong><br />
+</div>
+<div>
+    <form id="user_form" method="post" action="{% url 'myaccount:signup' %}"
+      enctype="multipart/form-data" style="margin-left:500px; margin-top:20px">
 
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-    <input type="submit" name="submit" value="Register" />
-</form>
+        {% csrf_token %}
+        <div class="fieldWrapper">
+            <label for="{{ user_form.subject.id_for_username }}">Username:</label>
+            <input id="{{ user_form.subject.id_for_username }}" type="text" name="username" maxlength="150" required style="background-color: Transparent; margin-left:30px"/>
+            <font style="color:red">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</font>
+        </div>
+        <div class="fieldWrapper" style="margin-top:10px">
+            <label for="{{ user_form.subject.id_for_email }}">Email address:</label>
+            <input id="{{ user_form.subject.id_for_email }}" type="text" name="email" style="background-color: Transparent; margin-left:2px"/>
+        </div>
+        <div class="fieldWrapper" style="margin-top:10px">
+            <label for="{{ user_form.subject.id_for_password }}">Password:</label>
+            <input id="{{ user_form.subject.id_for_password }}" type="password" name="password" style="background-color: Transparent; margin-left:35px"/>
+        </div>
+        <div class="fieldWrapper" style="margin-top:10px">
+            <label for="{{ profile_form.subject.id_for_personalURL }}">PersonalURL:</label>
+            <input id="{{ profile_form.subject.id_for_personalURL }}" type="text" name="personalURL" style="background-color: Transparent; margin-left:11px"/>
+        </div>
+        <div class="fieldWrapper" style="margin-top:10px">
+            <label for="{{ profile_form.subject.id_for_picture }}">Picture:</label>
+            <input type="file" name="picture" accept="image/*" id="{{ profile_form.subject.id_for_picture }}" style="margin-left:55px">
+        </div>
+    <input type="submit" name="submit" value="Register" style="margin-left:200px;margin-top:20px; font-size:20px; background-color: Transparent; border:none; color: blue" />
+    </form>
+</div>
 {% endif %}
 {% endblock %}
 

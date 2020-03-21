@@ -92,8 +92,8 @@ def myaccount(request):
     currentLogin = timezone.now()
     profile.logInDate = currentLogin
     profile.save()
-    qs1 = Comment.objects.filter(user=profile).order_by('date')[:3]
-    qs2 = Comment.objects.filter(user=profile).order_by('rate')[:5]
+    qs1 = Comment.objects.filter(user=profile).order_by('-date')[:3]
+    qs2 = Comment.objects.filter(user=profile).order_by('-rate')[:5]
     pages = {}
     for item in qs2:
         wonder_name = item.wonder

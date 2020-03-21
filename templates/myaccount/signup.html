@@ -7,43 +7,45 @@
 
 {% block body_block %}
 <div>
-    <h1 style="margin-left:570px; margin-top:30px">Begin Your Journey</h1>
+    <h1 style="font-family: 'Trade Winds'">Begin Your Journey</h1>
 </div>
 {% if registered %}
-<div style="margin-left:660px; margin-top:10px">
+<div>
     <strong>thank you for registering!</strong>
 </div>
 {% else %}
-<div style="margin-left:690px; margin-top:10px">
+<div>
     <strong>register here!</strong><br />
 </div>
 <div>
-    <form id="user_form" method="post" action="{% url 'myaccount:signup' %}"
-      enctype="multipart/form-data" style="margin-left:500px; margin-top:20px">
+    <form class="form-group" id="user_form" method="post" action="{% url 'myaccount:signup' %}"
+      enctype="multipart/form-data" >
 
         {% csrf_token %}
         <div class="fieldWrapper">
             <label for="{{ user_form.subject.id_for_username }}">Username:</label>
-            <input id="{{ user_form.subject.id_for_username }}" type="text" name="username" maxlength="150" required style="background-color: Transparent; margin-left:30px"/>
+            <input class="form-control" id="{{ user_form.subject.id_for_username }}" type="text" name="username" maxlength="150" required style="background-color: Transparent;"/>
             <font style="color:red">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</font>
         </div>
         <div class="fieldWrapper" style="margin-top:10px">
             <label for="{{ user_form.subject.id_for_email }}">Email address:</label>
-            <input id="{{ user_form.subject.id_for_email }}" type="text" name="email" style="background-color: Transparent; margin-left:2px"/>
+            <input class="form-control" id="{{ user_form.subject.id_for_email }}" type="text" name="email" style="background-color: Transparent;"/>
         </div>
         <div class="fieldWrapper" style="margin-top:10px">
             <label for="{{ user_form.subject.id_for_password }}">Password:</label>
-            <input id="{{ user_form.subject.id_for_password }}" type="password" name="password" style="background-color: Transparent; margin-left:35px"/>
+            <input class="form-control" id="{{ user_form.subject.id_for_password }}" type="password" name="password" style="background-color: Transparent;" />
         </div>
         <div class="fieldWrapper" style="margin-top:10px">
             <label for="{{ profile_form.subject.id_for_personalURL }}">PersonalURL:</label>
-            <input id="{{ profile_form.subject.id_for_personalURL }}" type="text" name="personalURL" style="background-color: Transparent; margin-left:11px"/>
+            <input class="form-control" id="{{ profile_form.subject.id_for_personalURL }}" type="text" name="personalURL" style="background-color: Transparent;" />
         </div>
         <div class="fieldWrapper" style="margin-top:10px">
             <label for="{{ profile_form.subject.id_for_picture }}">Picture:</label>
-            <input type="file" name="picture" accept="image/*" id="{{ profile_form.subject.id_for_picture }}" style="margin-left:55px">
+            <input class="form-control" type="file" name="picture" accept="image/*" id="{{ profile_form.subject.id_for_picture }}" style="background-color: Transparent;" >
         </div>
-    <input type="submit" name="submit" value="Begin" style="margin-left:200px;margin-top:20px; font-size:20px; background-color: Transparent; border:none;  font-weight:bold" />
+        <div class="mx-auto text-center mt-3">
+        <button class="btn btn-primary" type="submit" name="submit" value="Begin">Begin</button>
+        </div>
     </form>
 </div>
 {% endif %}

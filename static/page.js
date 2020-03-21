@@ -1,8 +1,4 @@
- $(function() {
-      $('#rating').barrating({
-          theme: 'fontawesome-stars',
-      });
-   });
+
 var rate = 0;
 $('#rating').barrating('show', {
     theme: 'fontawesome-stars',
@@ -14,15 +10,24 @@ $('#rating').barrating('show', {
         }
     }
 });
+var existRate = $("#rate-box").attr("data-rate");
+if( existRate == "anonymouse"){
+    $('select').barrating('readonly', true );
+}else if(existRate !="no"){
+    $("#rating").barrating('set',existRate);
+}
 
 var csrftoken = Cookies.get('csrftoken');
 $("#submitComment").on("click",function () {
     var url = "category/submitComment/";
     var commentBox = $('#commentBox').val();
+    var wonderName = $("#wonder").html();
+    var inputName = $("#user").html();
     var data = {
         userRate: rate,
-        userName: "",
+        userName: inputName,
         userComment:commentBox,
+        userWonder: wonderName
     };
     $.ajax({
             headers: {'X-CSRFToken': csrftoken},
@@ -30,7 +35,8 @@ $("#submitComment").on("click",function () {
             url:"../../submitComment/",
             data:data,
             success:function () {
-                
+                alert("You have successfully submitted your comment!");
+                location.reload();
             }
         }
     );

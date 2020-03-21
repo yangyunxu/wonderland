@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div style="display: table; background-image:url(/static/images/myaccount/myaccount_background.jpg);background-size: cover; width:100%; height:93%">
+        <div style="display: table; width:100%; height:93%">
             <div style="margin-left: 60px; width:20%; display:table-cell; text-align: center;">
                 <div style="margin-top: 80px; display:inline-block;">
                     {% if profile.picture %}
@@ -63,16 +63,17 @@
                 </div>
             </div>
 
-            <div style="width:80%">
+            <div style="width:80%; display:table-cell">
                 <div style="margin-left:150px">
                     <font style="font-weight:bold">Favorites Wonders:</font>
-                    <div style="margin-top: 20px">
-                        {% if qs2 %}
-                        {% for item in qs2%}
-                        <div style="display:inline">
-                            <img src="{% static 'images/places/{{ item.value.name }}.jpg' %}" alt="{{ item.value.name }}" height="150" width="150">
-                            {{ item.value.name }}
-                        </div>
+                    <div style="margin-top: 10px">
+                        {% if pages %}
+                        {% for page in pages %}
+                            {% with 'images/places/'|add:page.slug|add:'.jpg' as image_static %}
+                            <div style="display:inline">
+                                <img src="{% static image_static %}" alt="{{ page.name }}" height="150" width="150">
+                            </div>
+                            {% endwith %}
                         {% endfor %}
                         {% else %}
                         <div>
@@ -82,12 +83,13 @@
                     </div>
                 </div><br>
 
-                <div style="margin-top: 40px; margin-left:150px">
+                <div style="margin-top:10px; margin-left:150px">
                     <font style="font-weight:bold">Recent Comments:</font>
-                    <div style="margin-top: 20px">
+                    <div style="margin-top: 5px">
                         {% if qs1 %}
                         {% for item in qs1 %}
                         <div>
+                            Wonder: {{ item.wonder }}<br>
                             Date: {{ item.date }}<br>
                             Comment: {{ item.comment }}
                         </div><br>

@@ -24,7 +24,7 @@
   </b>
   <span id="button-span">
             {% if user.is_authenticated %}
-            <span>User: {{ user.username }}</span>
+<!--            <span>User: {{  profile.user.username }}</span>-->
             <a href="{% url 'myaccount:logout' %}">
                 <button class="btn btn-outline-secondary"> Logout</button>
             </a>

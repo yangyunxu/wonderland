@@ -8,21 +8,21 @@
             {% endblock %}
         </title>
     </head>
-    <body style="background-image:url(/static/images/myaccount/background_image.jpg);background-size: cover">
+    <body style="background-image:url(/static/images/myaccount/base_background.jpg);background-size: cover">
     <div style="float:right; margin-right:30px; margin-top:10px">
         {% if user.is_authenticated %}
         <div style="display:inline">
-            <a href="{% url 'myaccount:logout' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px;color:blue">Logout</button></a>
+            <a href="{% url 'myaccount:logout' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">Logout</button></a>
         </div>
         <div style="display:inline">
-            <a href="{% url 'myaccount:myaccount' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px;color:blue">Myaccount</button></a>
+            <a href="{% url 'myaccount:myaccount' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">Myaccount</button></a>
         </div>
         {% else %}
         <div style="display:inline">
-            <a href="{% url 'myaccount:signup' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px;color:blue">Sign Up</button></a>
+            <a href="{% url 'myaccount:signup' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">Sign Up</button></a>
         </div>
         <div style="display:inline">
-            <a href="{% url 'myaccount:login' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px;color:blue">Login</button></a>
+            <a href="{% url 'myaccount:login' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">Login</button></a>
         </div>
         {% endif %}
     </div>

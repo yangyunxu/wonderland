@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from myaccount.models import UserProfile
 from django.utils import timezone
-
+from category.models import Comment, Page
 
 
 
@@ -57,7 +57,14 @@ def user_login(request):
                 currentLogin = timezone.now()
                 profile.logInDate = currentLogin
                 profile.save()
-                return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin})
+                qs1 = Comment.objects.filter(user=profile).order_by('date')[:3]
+                qs2 = Comment.objects.filter(user=profile).order_by('rate')[:5]
+                pages = {}
+                for item in qs2:
+                    wonder_name = item.wonder
+                    page = Page.objects.get(name=wonder_name)
+                    pages[wonder_name] = page
+                return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin, 'qs1': qs1, 'pages':pages})
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -85,7 +92,14 @@ def myaccount(request):
     currentLogin = timezone.now()
     profile.logInDate = currentLogin
     profile.save()
-    return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin})
+    qs1 = Comment.objects.filter(user=profile).order_by('date')[:3]
+    qs2 = Comment.objects.filter(user=profile).order_by('rate')[:5]
+    pages = {}
+    for item in qs2:
+        wonder_name = item.wonder
+        page = Page.objects.get(name=wonder_name)
+        pages[wonder_name] = page
+    return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin, 'qs1': qs1, 'pages':pages})
 
 
 def changepwd(request):

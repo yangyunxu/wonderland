@@ -101,7 +101,7 @@ def myaccount(request):
         pages[wonder_name] = page
     return render(request, 'myaccount/myaccount.html', context={'profile': profile, 'lastLogin': lastLogin, 'qs1': qs1, 'pages':pages})
 
-
+@login_required
 def changepwd(request):
     if request.method == 'POST':
         user = request.user

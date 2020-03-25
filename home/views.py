@@ -6,12 +6,12 @@ from myaccount.models import UserProfile
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from search.views import searchResult
 
 def index(request):
     page_list = Page.objects.order_by('-rate')[:2]
     context_dict = {}
     context_dict['pages'] = page_list
-
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
@@ -31,15 +31,4 @@ def contact(request):
     return render(request, 'home/contact.html')
 
 
-def signup(request):
-    return render(request, 'myaccount/signup.html')
 
-
-def login(request):
-    return render(request, 'myaccount/login.html')
-
-
-@login_required
-def user_logout(request):
-    logout(request)
-    return redirect(reverse('myaccount:login'))

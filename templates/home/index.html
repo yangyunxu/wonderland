@@ -6,14 +6,19 @@
     <link rel="stylesheet" href="{% static 'css/index.css'%}"/>
     <link rel="stylesheet" href="/static/css/category.css">
     <link rel="stylesheet" href="{% static 'css/thebestwonders.css' %}"/>
-    <link href="https://fonts.googleapis.com/css?family=Trade+Winds&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Trade+Winds&display=swap" rel="stylesheet"><script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<!--<body style="background-image: url(/static/images/home/ice-1.jpg);background-size: cover;">-->
+
 <body>
 <div  style="background-image: url(/static/images/home/trees.jpg);background-size:cover;background-position: center ;">
 
@@ -22,17 +27,21 @@
        <span id="main-title" class="navbar-brand" >WonderLand</span>
    </a>
   </b>
+
   <span id="button-span">
             {% if user.is_authenticated %}
-<!--            <span>User: {{  profile.user.username }}</span>-->
+    <span style="color: white;margin-right: 20px;">User: {{  user.username }}</span>
             <a href="{% url 'myaccount:logout' %}">
                 <button class="btn btn-outline-secondary"> Logout</button>
+            </a>
+            <a href="{% url 'myaccount:myaccount' %}">
+                <button class="btn btn-outline-secondary"> Myaccount</button>
             </a>
             {% else %}
             <a href="{% url 'myaccount:signup' %}">
                <button class=" btn btn-outline-secondary mr-1" >Sign up</button>
             </a>
-            <a href="/myaccount/login/">
+            <a href="{% url 'myaccount:login' %}">
             <button class="btn btn-outline-secondary">Log in</button>
             </a>
             {% endif %}
@@ -42,8 +51,24 @@
 
     <h2 style="color: white;font-family: 'Trade Winds';text-align:center">LET'S GO</h2><br><br>
 
+
+
+                    <div class="search-form" style="width:50%; margin:0 auto; ">
+                        <input class="form-control mr-sm-2" id="typestr" type="text"
+                               style="display:inline;width: 50%;height: 3rem; margin-left: 25%" placeholder="Search" aria-label="Search"
+                               onkeydown="onKeyDown()">
+                        <button class="btn btn-outline-secondary" type="submit" style="display: inline; background-color: rgba(20,49,14,0.73)"
+                                onclick="searchPage()">Search
+                        </button><br>
+
+                        <p id="hint" style="margin-left:40%;color: rgba(28,29,32,0.73);margin-top: 10px;">Hint: You can search the continents and places.</p>
+                    </div>
+
+
+
     <h5 style="text-align: center">
-        <a  href="/category/category/all/" style="color: rgba(28,29,32,0.73);font-family: 'Trade Winds';font-size:24px;" > ALL </a>
+
+        <a  href="/category/category/all/" style="color: rgba(28,29,32,0.73);font-family: 'Trade Winds';margin-left:80px;font-size:24px;" > ALL </a>
         <a  href="/home/about/" style="color: rgba(28,29,32,0.73);font-family: 'Trade Winds';margin-left:80px;font-size:24px;">About</a>
         <a  href="/home/faq/" style="color: rgba(28,29,32,0.73);font-family: 'Trade Winds';margin-left:80px;font-size:24px;">Q&A</a>
     </h5><hr/>
@@ -114,7 +139,28 @@
         <span><a class="bottom-title" href="/home/contact/" >Contact us</a> </span>
 </div>
 
+<script type="text/javascript">
 
+        function onKeyDown(event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 27) { // key Esc
+                document.getElementById("typestr").value = "";
+            }
+
+            if (e && e.keyCode == 13) { // key Enter
+                searchPage();
+            }
+
+        }
+
+        function searchPage() {
+            var strs = document.getElementById("typestr").value.toString();
+            var url = '{% url 'search:searchpage' 'none' %}';
+            url = url.replace('none', strs);
+            window.open(url, '_self');
+        }
+    </script>
 </body>
+
 
 </html>

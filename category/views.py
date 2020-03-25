@@ -17,6 +17,8 @@ def category(request, category_name_slug):
         all_dict['name'] = "ALL "
         pages = Page.objects.all()
         context_dict['pages'] = pages
+        for page in pages:
+            page.img = 'images/places/' + page.slug + '.jpg'
         context_dict['category'] = all_dict
         context_dict['bkg'] = 'images/continent/all.jpg'
         return render(request, 'category/category.html', context=context_dict)
@@ -24,6 +26,10 @@ def category(request, category_name_slug):
         category = Category.objects.get(slug=category_name_slug)
         pages = Page.objects.filter(category=category)
         context_dict['pages'] = pages
+
+        for page in pages:
+            page.img = 'images/places/' + page.slug + '.jpg'
+
         context_dict['category'] = category
         context_dict['bkg'] = 'images/continent/' + category.slug + '.jpg'
     except Category.DoesNotExist:

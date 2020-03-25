@@ -27,24 +27,28 @@
             <input class="form-control" id="{{ user_form.subject.id_for_username }}" type="text" name="username" maxlength="150" required style="background-color: Transparent;"/>
             <font style="color:red">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</font>
         </div>
-        <div class="fieldWrapper" style="margin-top:10px">
+        <div class="fieldWrapper">
             <label for="{{ user_form.subject.id_for_email }}">Email address:</label>
             <input class="form-control" id="{{ user_form.subject.id_for_email }}" type="text" name="email" style="background-color: Transparent;"/>
+            <font style="color:red">Not required.</font>
         </div>
-        <div class="fieldWrapper" style="margin-top:10px">
+        <div class="fieldWrapper">
             <label for="{{ user_form.subject.id_for_password }}">Password:</label>
             <input class="form-control" id="{{ user_form.subject.id_for_password }}" type="password" name="password" style="background-color: Transparent;" />
+            <font style="color:red">Required.</font>
         </div>
-        <div class="fieldWrapper" style="margin-top:10px">
+        <div class="fieldWrapper">
             <label for="{{ profile_form.subject.id_for_personalURL }}">PersonalURL:</label>
             <input class="form-control" id="{{ profile_form.subject.id_for_personalURL }}" type="text" name="personalURL" style="background-color: Transparent;" />
+            <font style="color:red">Not required.</font>
         </div>
-        <div class="fieldWrapper" style="margin-top:10px">
+        <div class="fieldWrapper">
             <label for="{{ profile_form.subject.id_for_picture }}">Picture:</label>
             <input class="form-control" type="file" name="picture" accept="image/*" id="{{ profile_form.subject.id_for_picture }}" style="background-color: Transparent;" >
+            <font style="color:red">Not required.</font>
         </div>
         <div class="mx-auto text-center mt-3">
-        <button class="btn btn-primary" type="submit" name="submit" value="Begin">Begin</button>
+            <button class="btn btn-primary" type="submit" name="submit" value="Begin">Begin</button>
         </div>
     </form>
 </div>

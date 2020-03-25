@@ -10,7 +10,7 @@
     <body>
         <div style="height:7%">
             <div style="display:inline">
-                <a href="{% url 'home:index' %}" style="margin-left:50px"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">MAIN</button></a>
+                <a href="{% url 'home:index' %}" style="margin-left:50px"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">HOME</button></a>
                 <a href="{% url 'home:about' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">ABOUT</button></a>
                 <a href="{% url 'home:faq' %}"><button style="background-color:Transparent; border:none; width:100px; height:50px;font-size:20px; font-weight:bold">Q&A</button></a>
             </div>
@@ -45,8 +45,8 @@
                 </div><br>
 
                 <div style="margin-top: 10px; display:inline-block;">
-                    Email:
                     {% if profile.user.email %}
+                    Email:
                         <a href="{{ profile.user.email }}">{{ profile.user.email }}</a>
                     {% else %}
                     {% endif %}

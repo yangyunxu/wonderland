@@ -9,7 +9,7 @@
 {% block body_block%}
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
       <div class="container">
-        <a class="navbar-brand text-white" href="{% url 'home:index' %}" style="font-family: 'Trade Winds'">WONDERLAND</a>
+        <a class="navbar-brand text-white" href="{% static bkg %}" style="font-family: 'Trade Winds'">WONDERLAND</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto pt-4">
                 {% if user.is_authenticated %}
@@ -38,10 +38,9 @@
     <div class="row row-cols-1 row-cols-md-3 wonder-result center-block">
 {#    every wonder#}
         {% for page in pages %}
-            {% with 'images/places/'|add:page.slug|add:'.jpg' as image_static %}
             <div class="col mb-4">
                 <a href="{% url 'category:page' page.slug %}" class="card wonder-card shadow-lg rounded">
-                    <div class="img-box" style="background-image: url({% static image_static %})"></div>
+                    <div class="img-box" style="background-image: url({% static page.img %})"></div>
                     <div class="card-body">
                         <span style="font-family: 'Trade Winds'; font-size: 1.5rem;">{{page.name}}</span>
                         <span class="ml-2" style="font-family: 'Trade Winds'">{{ page.rate }}</span>
@@ -49,7 +48,6 @@
                     </div>
                 </a>
             </div>
-            {% endwith %}
         {% endfor %}
     </div>
     <div class="text-center mb-3">

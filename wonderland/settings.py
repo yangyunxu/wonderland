@@ -28,7 +28,7 @@ SECRET_KEY = '$2ikwg6(1#0+uaqlabgpo-2z5tj2n61)i8b_#uxi41ngpa^u4a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['braden.pythonanywhere.com']
 
 
 # Application definition

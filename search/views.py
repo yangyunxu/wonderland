@@ -10,6 +10,7 @@ def theBestWonders(request):
 
 def searchResult(request, typestring):
     context_dict = {}
+    context_dict['isStr'] = True
     context_dict['keyword'] = "\'"+typestring+"\'"
     categories = Category.objects.all()
     for category in categories:
@@ -25,6 +26,7 @@ def searchResult(request, typestring):
     context_dict['results'] = None
     return render(request, 'search/searchpage.html', context=context_dict)
 
-# def searchResult(request):
-#     return render(request, 'search/searchpage.html')
-
+def searchHome(request):
+    context_dict = {}
+    context_dict['isStr'] = False
+    return render(request, 'search/searchpage.html', context=context_dict)

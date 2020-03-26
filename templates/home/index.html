@@ -155,9 +155,13 @@
 
         function searchPage() {
             var strs = document.getElementById("typestr").value.toString();
-            var url = '{% url 'search:searchpage' 'none' %}';
+            if (strs==""){
+                window.open('{% url 'search:searchhome' %}', '_self')
+            }else {
+                var url = '{% url 'search:searchpage' 'none' %}';
             url = url.replace('none', strs);
             window.open(url, '_self');
+            }
         }
     </script>
 </body>

@@ -57,6 +57,7 @@
             {% else %}
             <span class="d-block mb-5 text-center">You have rate the wonder as {{ rate }} ! </span>
             {% endif %}
+            {% if user.is_authenticated %}
             <div id="rate-box" data-rate={{ rate }} class="mt-2">
                 <select id="rating">
                   <option value="1">1</option>
@@ -71,6 +72,7 @@
                   <option value="10">10</option>
                 </select>
             </div>
+            {% endif %}
         </div>
         <div>
             <span class="d-block text-center mt-3">Here are some Comments from Other Travellers!</span>
